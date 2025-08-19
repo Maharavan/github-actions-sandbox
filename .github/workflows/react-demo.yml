@@ -20,6 +20,7 @@ jobs:
               npm test
 
   react-build:
+    needs: react-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
