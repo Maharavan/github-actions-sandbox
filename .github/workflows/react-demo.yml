@@ -18,5 +18,23 @@ jobs:
         run:  |
               cd second-action-react-demo
               npm test
-              
-      
+
+  react-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run:  |
+              cd second-action-react-demo
+              npm ci
+      - name: Build
+        run:  |
+              cd second-action-react-demo
+              npm run build 
+      - name: Deploy
+        run: echo "deploy"
