@@ -39,3 +39,9 @@ jobs:
               npm run build 
       - name: Deploy
         run: echo "deploy"
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Provide output information about Github' # Provides metadata info about workflow
+        run: echo "${{ toJSON(github) }}"
+      
