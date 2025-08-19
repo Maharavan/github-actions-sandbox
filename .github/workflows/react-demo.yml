@@ -20,7 +20,7 @@ jobs:
               npm test
 
   react-build:
-    needs: react-test
+    needs: react-test # depends on react-test completion else both jobs run parallel in-general
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
