@@ -4,11 +4,13 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Print Hello'
+      - name: Print Hello
         run:  |
               echo "Hello"
               echo "Welcome"
-      - name: 'Run frequency Counter'
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run frequency Counter
         run:  |
               cd first-action-go-demo
               go run main.go
