@@ -40,6 +40,7 @@ jobs:
       - name: Deploy
         run: echo "deploy"
   info:
+    needs: [react-test,react-build]
     runs-on: ubuntu-latest
     steps:
       - name: 'Provide output information about Github' # Provides metadata info about workflow
