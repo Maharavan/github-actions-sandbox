@@ -12,9 +12,11 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run:  |
+              cd second-action-react-demo
               npm ci
       - name: Run tests
         run:  |
+              cd second-action-react-demo
               npm test
               
       
