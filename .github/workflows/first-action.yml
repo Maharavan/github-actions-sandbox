@@ -8,5 +8,7 @@ jobs:
         run:  |
               echo "Hello"
               echo "Welcome"
-      - name: 'Print Thank you'
-        run: echo "Thank you"
+      - name: 'Run frequency Counter'
+        run:  |
+              cd first-action-go-demo
+              go run main.go
