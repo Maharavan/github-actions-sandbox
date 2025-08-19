@@ -1,0 +1,20 @@
+name: React demo 
+on: push
+jobs:
+  react-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setupnode@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run:  |
+              npm ci 
+      - name: Run tests
+        run:  |
+              npm test
+              
+      
