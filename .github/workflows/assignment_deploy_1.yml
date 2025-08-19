@@ -1,4 +1,4 @@
-name: React Deployment
+name: assignment react deploy
 on: ["push"]
 jobs:
   Deployer:
@@ -16,6 +16,7 @@ jobs:
               npm ci
       - name: Run Lint
         run:  |
+              cd assignment-1
               npm run lint
       - name: Run tests
         run:  |
