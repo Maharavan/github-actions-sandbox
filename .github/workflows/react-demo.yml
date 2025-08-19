@@ -1,5 +1,5 @@
 name: React demo 
-on: push
+on: [push,workflow_dispatch]
 jobs:
   react-test:
     runs-on: ubuntu-latest
