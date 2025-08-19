@@ -4,7 +4,7 @@ jobs:
   Deployer:
     runs-on: ubuntu-latest
     steps:
-      - name: Display the log of the Github
-        run: echo "${{ toJSON(github) }}"
+      - name: Display the log of the Github event details
+        run: echo "${{ toJSON(github.event) }}"
       
 
