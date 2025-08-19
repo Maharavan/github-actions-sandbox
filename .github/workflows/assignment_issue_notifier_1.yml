@@ -1,0 +1,10 @@
+name: React Deployment
+on: ["issues"]
+jobs:
+  Deployer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display the log of the Github
+        run: echo "${{ toJSON(github) }}"
+      
+

@@ -8,5 +8,6 @@ func main() {
 	for _, val := range count {
 		hashMap[val] += 1
 	}
-	fmt.Print("Frequency Counter", hashMap)
+	fmt.Println("Frequency Counter: ", hashMap)
+
 }

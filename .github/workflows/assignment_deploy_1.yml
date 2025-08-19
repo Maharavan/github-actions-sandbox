@@ -1,0 +1,26 @@
+name: React Deployment
+on: ["push"]
+jobs:
+  Deployer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run:  |
+              cd assignment-1
+              npm ci
+      - name: Run Lint
+        run:  |
+              npm run lint
+      - name: Run tests
+        run:  |
+              cd assignment-1
+              npm test
+      - name: Deploy App
+        run:  echo "Deployed app successfully"
+
