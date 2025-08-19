@@ -1,4 +1,4 @@
-name: React Deployment
+name: assignment issue notifier
 on: ["issues"]
 jobs:
   Deployer:
