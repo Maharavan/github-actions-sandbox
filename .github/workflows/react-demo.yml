@@ -7,7 +7,6 @@ on:
     types:
       - assigned
   workflow_dispatch:
-
 jobs:
   react-test:
     runs-on: ubuntu-latest
