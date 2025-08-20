@@ -1,5 +1,13 @@
 name: React demo 
-on: [push,workflow_dispatch]
+on:
+  pull_request:
+    types:
+      - opened
+  issues:
+    types:
+      - assigned
+  workflow_dispatch:
+
 jobs:
   react-test:
     runs-on: ubuntu-latest
