@@ -35,7 +35,7 @@ jobs:
     needs: react-test # depends on react-test completion else both jobs run parallel in-general
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.js_name.data }} #id name.value that echoed in GITHUB_OUTPUT i.e data
+      script-file: ${{ steps.js_name.data }} #located inside steps and id name.value that echoed in GITHUB_OUTPUT i.e data
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -70,6 +70,7 @@ jobs:
       - name: Deploy stage
         run:  |
               echo "Deploy"
+              echo "${{ needs.js_name.data }}"
               ls -l
   info:
     needs: [react-test,react-build,deploy]
