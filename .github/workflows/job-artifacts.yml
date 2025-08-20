@@ -1,0 +1,68 @@
+name: React demo 
+on:
+  push:
+    branches:
+      - main
+      - 'dev-*' # dev-new dev-this-new *-> describe any other characters except slash
+      - 'feat/**' # also includes slashes feat/branch feat/branc/branch
+  pull_request:
+    types:
+      - opened
+  issues:
+    types:
+      - assigned
+  workflow_dispatch:
+jobs:
+  react-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run:  |
+              cd second-action-react-demo
+              npm ci
+      - name: Run tests
+        run:  |
+              cd second-action-react-demo
+              npm test
+
+  react-build:
+    needs: react-test # depends on react-test completion else both jobs run parallel in-general
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run:  |
+              cd second-action-react-demo
+              npm ci
+      - name: Build
+        run:  |
+              cd second-action-react-demo
+              npm run build
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: |
+                second-action-react-demo/dist
+                second-action-react-demo/package.json
+      - name: Deploy
+        run: echo "deploy"
+  info:
+    needs: [react-test,react-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Provide output information about Github' # Provides metadata info about workflow
+        run: echo "${{ toJSON(github) }}"
+
+      
