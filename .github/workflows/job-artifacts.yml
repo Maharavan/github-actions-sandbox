@@ -1,4 +1,4 @@
-name: React demo 
+name: Job artifacts 
 on:
   push:
     branches:
@@ -56,10 +56,20 @@ jobs:
           path: |
                 second-action-react-demo/dist
                 second-action-react-demo/package.json
-      - name: Deploy
-        run: echo "deploy"
-  info:
+  deploy:
+    runs-on: ubuntu-latest
     needs: [react-test,react-build]
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: output
+      - name: Deploy stage
+        run:  |
+              echo "Deploy"
+              ls -l
+  info:
+    needs: [react-test,react-build,deploy]
     runs-on: ubuntu-latest
     steps:
       - name: 'Provide output information about Github' # Provides metadata info about workflow
