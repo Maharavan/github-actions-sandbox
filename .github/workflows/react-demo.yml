@@ -1,5 +1,10 @@
 name: React demo 
 on:
+  push:
+    branches:
+      - main
+      - 'dev-*' # dev-new dev-this-new *-> describe any other characters except slash
+      - 'feat/**' # also includes slashes feat/branch feat/branc/branch
   pull_request:
     types:
       - opened
