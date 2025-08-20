@@ -34,6 +34,8 @@ jobs:
   react-build:
     needs: react-test # depends on react-test completion else both jobs run parallel in-general
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.js_name.data }} #id name.value that echoed in GITHUB_OUTPUT i.e data
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -49,13 +51,14 @@ jobs:
         run:  |
               cd second-action-react-demo
               npm run build
+      - name: Publish JS filename
+        id: js_name # id needed to access output name
+        run: find second-action-react-demo/dist/assets/*.js -type f -execdir echo 'data={}' >> $GITHUB_OUTPUT';' # data is key and value {} and it will appended in special file that github holds can be appended in GITHUB_OUTPUT
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: output
-          path: |
-                second-action-react-demo/dist
-                second-action-react-demo/package.json
+          path: second-action-react-demo/dist
   deploy:
     runs-on: ubuntu-latest
     needs: [react-test,react-build]
