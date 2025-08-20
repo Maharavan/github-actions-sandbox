@@ -70,7 +70,7 @@ jobs:
       - name: Deploy stage
         run:  |
               echo "Deploy"
-              echo "${{ needs.js_name.data }}"
+              echo "${{ needs.react-build.outputs.script-file }}"
               ls -l
   info:
     needs: [react-test,react-build,deploy]
