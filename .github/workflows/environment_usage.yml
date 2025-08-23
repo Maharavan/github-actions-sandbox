@@ -7,7 +7,7 @@ on:
 jobs:
     Coin-Available:
         env:
-            CRYTO_KEY: CG-TKzZdje5Au2QiMXBVbe6Sgyg 
+            CRYPTO_KEY: CG-TKzZdje5Au2QiMXBVbe6Sgyg 
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
