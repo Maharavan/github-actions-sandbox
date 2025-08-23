@@ -2,7 +2,7 @@ name: Job artifacts
 on:
   push:
     branches:
-      - main
+      - '!main'
       - 'dev-*' # dev-new dev-this-new *-> describe any other characters except slash
       - 'feat/**' # also includes slashes feat/branch feat/branc/branch
   pull_request:

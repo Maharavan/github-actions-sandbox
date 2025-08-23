@@ -3,12 +3,12 @@ on:
     push:
         branches:
             - main
-env:
-    API: <HELLO_NAME>
+# env:
+#     API: <HELLO_NAME>
 jobs:
     Coin-Available:
         env:
-            CRYPTO_KEY: CG-TKzZdje5Au2QiMXBVbe6Sgyg 
+            CRYPTO_KEY: ${{ secrets.CRYPTO_API_KEY }} 
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -25,11 +25,11 @@ jobs:
                     cd third-action-env-go-demo
                     go run main.go
     
-    check-env:
-        runs-on: ubuntu-latest
-        steps:
-            - name: display env
-              run:  |
-                    echo $API
-                    echo ${{env.CRYPTO_KEY}}
+    # check-env:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: display env
+    #           run:  |
+    #                 echo $API
+    #                 echo ${{env.CRYPTO_KEY}}
             
