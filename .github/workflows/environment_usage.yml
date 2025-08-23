@@ -1,0 +1,25 @@
+name: Crypto-Check
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    Coin-Available:
+        env:
+            CRYTO_KEY: CG-TKzZdje5Au2QiMXBVbe6Sgyg 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions@checkout/v5
+            - name: Check Go
+              run:  |
+                    go --version
+            - name: Output env
+              run:  |
+                    echo $CRYPTO_KEY
+            - name: Get Crypto data
+              run:  |
+                    cd third-action=env-go-demo
+                    go run main.go
+    
