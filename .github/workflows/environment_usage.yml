@@ -3,11 +3,12 @@ on:
     push:
         branches:
             - main
+            - dev
 # env:
 #     API: <HELLO_NAME>
 jobs:
     Coin-Available:
-        environment: crypto-check
+        environment: crypto_check
         env:
             CRYPTO_KEY: ${{ secrets.CRYPTO_API_KEY }} 
         runs-on: ubuntu-latest
