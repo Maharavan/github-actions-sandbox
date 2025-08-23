@@ -58,6 +58,7 @@ jobs:
           key: dep-node-modules-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
           restore-keys: dep-node-modules-
       - name: Install dependencies
+        if: steps.cache-file.outputs.cache-hit != 'true'
         run:  |
               cd second-action-react-demo
               npm ci
