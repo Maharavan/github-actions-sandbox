@@ -28,6 +28,7 @@ jobs:
         with:
           path: ~/.npm    # folder to cache
           key: dep-node-modules-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
+          restore-keys: dep-node-modules-
       - name: Install dependencies
         run:  |
               cd second-action-react-demo
@@ -55,6 +56,7 @@ jobs:
         with:
           path: ~/.npm    # folder to cache
           key: dep-node-modules-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
+          restore-keys: dep-node-modules-
       - name: Install dependencies
         run:  |
               cd second-action-react-demo
