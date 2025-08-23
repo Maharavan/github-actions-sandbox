@@ -35,7 +35,7 @@ jobs:
     needs: react-test # depends on react-test completion else both jobs run parallel in-general
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.js_name.data }} #located inside steps and id name.value that echoed in GITHUB_OUTPUT i.e data
+      script-file: ${{ steps.js_name.outputs.data }} #located inside steps and id name.value that echoed in GITHUB_OUTPUT i.e data
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -53,7 +53,9 @@ jobs:
               npm run build
       - name: Publish JS filename
         id: js_name # id needed to access output name
-        run:     file=$(find second-action-react-demo/dist/assets -type f -name "*.js" | head -n 1) echo "data=$file" >> $GITHUB_OUTPUT # data is key and value {} and it will appended in special file that github holds can be appended in GITHUB_OUTPUT
+        run:  |
+              file=$(find second-action-react-demo/dist/assets -type f -name "*.js" | head -n 1)
+              echo "data=$file" >> $GITHUB_OUTPUT # data is key and value {} and it will appended in special file that github holds can be appended in GITHUB_OUTPUT
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
