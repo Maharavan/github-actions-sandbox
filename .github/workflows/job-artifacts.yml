@@ -28,7 +28,7 @@ jobs:
         with:
           path: second-action-react-demo/node_modules    # folder to cache
           key: dep-node-modules-${{ github.ref_name }}-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
-          restore-keys: dep-node-modules-${{ github.ref_name }}
+          restore-keys: dep-node-modules-${{ github.ref_name }}-
       - name: Install dependencies
         if: steps.cache-file.outputs.cache-hit != 'true'
         run:  |
@@ -57,7 +57,7 @@ jobs:
         with:
           path: second-action-react-demo/node_modules    # folder to cache
           key: dep-node-modules-${{ github.ref_name }}-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
-          restore-keys: dep-node-modules-${{ github.ref_name }}
+          restore-keys: dep-node-modules-${{ github.ref_name }}-
       - name: Install dependencies
         if: steps.cache-file.outputs.cache-hit != 'true'
         run:  |
