@@ -3,7 +3,8 @@ on:
     push:
         branches:
             - main
-
+env:
+    API: <HELLO_NAME>
 jobs:
     Coin-Available:
         env:
@@ -18,8 +19,17 @@ jobs:
             - name: Output env
               run:  |
                     echo $CRYPTO_KEY
+                    echo ${{env.CRYPTO_KEY}}
             - name: Get Crypto data
               run:  |
                     cd third-action-env-go-demo
                     go run main.go
     
+    check-env:
+        runs-on: ubuntu-latest
+        steps:
+            - name: display env
+              run:  |
+                    echo $API
+                    echo ${{env.CRYPTO_KEY}}
+            
