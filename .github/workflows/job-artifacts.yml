@@ -49,6 +49,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Cache dependency
+        id: cache-file
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm    # folder to cache
+          key: dep-node-modules-${{ hashFiles('**/package-lock.json') }}          # retrieving folder on another machine/job
       - name: Install dependencies
         run:  |
               cd second-action-react-demo
