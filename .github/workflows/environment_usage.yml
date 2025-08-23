@@ -14,7 +14,7 @@ jobs:
               uses: actions/checkout@v5
             - name: Check Go
               run:  |
-                    go --version
+                    which go
             - name: Output env
               run:  |
                     echo $CRYPTO_KEY
