@@ -87,7 +87,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist-files
-          path: '.'
+          path: dist-files
       - name: Output contents
         run: |
               cd $GITHUB_WORKSPACE/dist-files
