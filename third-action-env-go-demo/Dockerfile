@@ -1,11 +1,12 @@
-FROM go:1.25.0-alphine
-
-ENV CRYPTO_KEY
+FROM golang:1.25-alpine
 WORKDIR /app
 
 COPY . .
 
+RUN go mod download 
+
 RUN CGO_ENABLED=0 GOOS=linux go build -o /tool
+EXPOSE 8000
 
 CMD ["/tool"]
 

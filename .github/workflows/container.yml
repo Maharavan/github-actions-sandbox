@@ -9,6 +9,8 @@ on:
 jobs:
     Container-Coin-Check:
         environment: crypto-check
+        container:
+          image: golang:1.25-alpine
         env:
             CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }} 
         runs-on: ubuntu-latest
