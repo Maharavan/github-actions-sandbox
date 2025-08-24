@@ -1,0 +1,25 @@
+name: Matrix demo
+
+on: push
+jobs: 
+    build:
+        strategy:
+            matrix:
+                node-version: [12,14,16]
+                operating-system: [ubuntu-latest,windows-latest] # check for all versions and run  in parallel
+        runs-on: ${{ matrix.operating-system}}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+            - name: Install NodeJS
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version}}
+            - name: Install dependencies
+              run:  |
+                    cd fourth-action-react-demo
+                    npm ci
+            - name: build
+              run:  |
+                    cd fourth-action-react-demo
+                    npm run build

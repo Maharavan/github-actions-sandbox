@@ -103,3 +103,7 @@ jobs:
         run: |
               echo 'Display info'
               echo '${{ toJson(github)}}'
+
+# Step outcome: "failure" → the step failed.
+
+# Job result: "success" → because continue-on-error: true allowed the job to continue.
