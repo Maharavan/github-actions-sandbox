@@ -45,7 +45,7 @@ jobs:
               cd fourth-action-react-demo
               npm run test
       - name: Upload test report
-        if: ${{steps.test-stage.outcome}}=='failure'
+        if: failure() && ${{steps.test-stage.outcome}}=='failure'
         uses: actions/upload-artifact@v4
         with:
           name: test-report
