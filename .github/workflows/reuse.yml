@@ -1,8 +1,25 @@
 name: Reuse deploy
-on: workflow_call # other workflow
+on: 
+    workflow_call: 
+        inputs:
+            artifact-name:
+                description: the name of artifact
+                required: false
+                type: string
+                default: dist
+
 jobs:
     deploy: 
         runs-on: ubuntu-latest
         steps:
+            - name: download artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: ${{ inputs.artifact-name }}
+                path: ${{ inputs.artifact-name }}
+            - name: check files
+              run: |
+                    cd ${{ inputs.artifact-name }}
+                    ls
             - name: Output info
               run: echo '${{toJson(github)}}'
