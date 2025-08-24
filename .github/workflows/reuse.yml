@@ -33,4 +33,4 @@ jobs:
                     ls
             - name: Output info
               id: set-result
-              run: echo 'step-info=success' >> $GITHUB_OUTPUT
+              run: echo "step-info=${{toJson(github)}}" >> $GITHUB_OUTPUT
