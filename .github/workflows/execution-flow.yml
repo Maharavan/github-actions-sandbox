@@ -46,7 +46,7 @@ jobs:
               npm run test
       - name: Upload test report
         if: ${{steps.test-stage.outcome}}=='failure'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: fourth-action-react-demo/test.json
@@ -72,7 +72,7 @@ jobs:
               cd fourth-action-react-demo
               npm run build
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files
           path: fourth-action-react-demo/dist
