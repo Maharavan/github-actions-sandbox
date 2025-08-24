@@ -11,7 +11,12 @@ jobs:
         environment: crypto-check
         container:
           image: mahar628/crypto_coins
-
+        # services:
+        #   mongodb:
+        #     image: mongodb
+        #     env:
+        #       MONGO_INITDB_ROOT_USERNAME: root
+        #       MONGO_INITDB_ROOT_PASSWORD: example
         env:
             CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }} 
         runs-on: ubuntu-latest
