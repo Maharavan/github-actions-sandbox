@@ -2,14 +2,24 @@ name: Reuse deploy
 on: 
     workflow_call: 
         inputs:
-            artifact-name:
-                description: the name of artifact
-                required: false
-                type: string
-                default: dist
+            artifact-name: # variable name
+                description: the name of artifact # description
+                required: false # if variable required true else false to check availability
+                type: string #type of input mandatory
+                default: dist # default value
+        outputs:
+            info:
+                description: info about job
+                value: ${{ jobs.deploy.outputs}} # jobs another context used in reusable workflow 
+                
+        # secrets:
+        #     some-secret:
+        #         required: false
 
-jobs:
+jobs:  
     deploy: 
+        outputs:
+            outcome: ${{steps.set-result.outputs.step-info}}
         runs-on: ubuntu-latest
         steps:
             - name: download artifact
@@ -22,4 +32,5 @@ jobs:
                     cd ${{ inputs.artifact-name }}
                     ls
             - name: Output info
-              run: echo '${{toJson(github)}}'
+              id: set-result
+              run: echo 'step-info=${{toJson(github)}}' >> $GITHUB_OUTPUT
