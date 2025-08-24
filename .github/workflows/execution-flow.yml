@@ -1,0 +1,92 @@
+name: Website Deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: |
+              cd fourth-action-react-demo
+              npm ci
+      - name: Lint code
+        run:  |
+              cd fourth-action-react-demo
+              npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: |
+              cd fourth-action-react-demo
+              npm ci
+      - name: Test code
+        id: test-stage
+        run: |
+              cd fourth-action-react-demo
+              npm run test
+      - name: Upload test report
+        if: ${{steps.test-stage.outcome}}=='failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: fourth-action-react-demo/test.json
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: |
+              cd fourth-action-react-demo
+              npm ci
+      - name: Build website
+        id: build-website
+        run: |
+              cd fourth-action-react-demo
+              npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: fourth-action-react-demo/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: fourth-action-react-demo/dist-files
+      - name: Output contents
+        run: |
+              cd fourth-action-react-demo/dist-files
+              ls
+      - name: Deploy
+        run: echo "Deploying..."
