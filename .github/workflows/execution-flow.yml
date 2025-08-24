@@ -98,3 +98,4 @@ jobs:
       - name: Output info
         run: |
               echo 'Display info'
+              echo '${{ toJson(github)}}'
