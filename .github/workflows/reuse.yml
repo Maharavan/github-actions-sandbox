@@ -10,7 +10,7 @@ on:
         outputs:
             info:
                 description: info about job
-                value: ${{ jobs.deploy.outputs}} # jobs another context used in reusable workflow 
+                value: ${{ jobs.deploy.outputs.outcome }} # jobs another context used in reusable workflow 
                 
         # secrets:
         #     some-secret:
