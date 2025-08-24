@@ -89,7 +89,7 @@ jobs:
           name: dist-files
       - name: Output contents
         run: |
-              cd dist-files
+              cd $GITHUB_WORKSPACE/dist-files
               ls
       - name: Deploy
         run: echo "Deploying..."
