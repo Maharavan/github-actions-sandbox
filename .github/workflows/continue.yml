@@ -43,11 +43,11 @@ jobs:
               npm ci
       - name: Test code
         id: test-stage
+        continue-on-error: true
         run: |
               cd fourth-action-react-demo
               npm run test
       - name: Upload test report
-        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: test-report
