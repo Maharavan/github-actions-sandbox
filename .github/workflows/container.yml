@@ -10,7 +10,8 @@ jobs:
     Container-Coin-Check:
         environment: crypto-check
         container:
-          image: golang:1.25-alpine
+          image: mahar628/crypto_coins
+
         env:
             CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }} 
         runs-on: ubuntu-latest
@@ -25,9 +26,7 @@ jobs:
                     echo $CRYPTO_KEY
                     echo ${{env.CRYPTO_KEY}}
             - name: Get Crypto data
-              run:  |
-                    cd third-action-env-go-demo
-                    go run main.go
+              run:  /tool
     
     # check-env:
     #     runs-on: ubuntu-latest
