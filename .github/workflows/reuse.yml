@@ -33,4 +33,9 @@ jobs:
                     ls
             - name: Output info
               id: set-result
-              run: echo "step-info=${{toJson(github)}}" >> $GITHUB_OUTPUT
+              run: |
+                    echo "step-info<<EOF" >> $GITHUB_OUTPUT
+                    echo "${{toJson(github)}}" >> $GITHUB_OUTPUT
+                    echo "EOF" >> $GITHUB_OUTPUT
+
+# EOF makes <<EOF start and EOF makes end in-between it treat as single value
