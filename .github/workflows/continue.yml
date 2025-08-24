@@ -43,7 +43,7 @@ jobs:
               npm ci
       - name: Test code
         id: test-stage
-        continue-on-error: true
+        continue-on-error: true # treats stage as success even it failed
         run: |
               cd fourth-action-react-demo
               npm run test
@@ -87,6 +87,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist-files
+          path: '.'
       - name: Output contents
         run: |
               cd dist-files
