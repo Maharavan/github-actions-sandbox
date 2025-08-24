@@ -2,7 +2,7 @@ name: Crypto-Check
 on:
     push:
         branches:
-            - main
+            - '!main'
             - dev
 # env:
 #     API: <HELLO_NAME>
