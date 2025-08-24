@@ -1,0 +1,37 @@
+name: Docker Crypto-Check
+on:
+    push:
+        branches:
+            - main
+            - dev
+# env:
+#     API: <HELLO_NAME>
+jobs:
+    Container-Coin-Check:
+        environment: crypto-check
+        env:
+            CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }} 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+            - name: Check Go
+              run:  |
+                    which go
+            - name: Output env
+              run:  |
+                    echo $CRYPTO_KEY
+                    echo ${{env.CRYPTO_KEY}}
+            - name: Get Crypto data
+              run:  |
+                    cd third-action-env-go-demo
+                    go run main.go
+    
+    # check-env:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: display env
+    #           run:  |
+    #                 echo $API
+    #                 echo ${{env.CRYPTO_KEY}}
+            

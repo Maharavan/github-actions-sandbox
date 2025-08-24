@@ -1,6 +1,6 @@
 FROM go:1.25.0-alphine
 
-
+ENV CRYPTO_KEY
 WORKDIR /app
 
 COPY . .
