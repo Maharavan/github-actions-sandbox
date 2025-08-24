@@ -1,0 +1,8 @@
+name: Reuse deploy
+on: workflow_call # other workflow
+jobs:
+    deploy: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output info
+              run: echo '${{toJson(github)}}'

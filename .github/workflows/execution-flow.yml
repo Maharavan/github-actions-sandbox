@@ -81,19 +81,7 @@ jobs:
           path: fourth-action-react-demo/dist
   deploy:
     needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist-files
-          path: dist-files
-      - name: Output contents
-        run: |
-              cd $GITHUB_WORKSPACE/dist-files
-              ls
-      - name: Deploy
-        run: echo "Deploying..."
+    uses: './.github/workflows/reuse.yml'
   report:
     if: failure()
     needs: [lint,deploy]
