@@ -8,9 +8,9 @@ on:
 #     API: <HELLO_NAME>
 jobs:
     Coin-Available:
-        environment: crypto_check
+        environment: crypto-check
         env:
-            CRYPTO_KEY: ${{ secrets.CRYPTO_API_KEY }} 
+            CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }} 
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
