@@ -89,7 +89,7 @@ jobs:
           name: dist-files
       - name: Output contents
         run: |
-              cd fourth-action-react-demo/dist-files
+              cd dist-files
               ls
       - name: Deploy
         run: echo "Deploying..."
