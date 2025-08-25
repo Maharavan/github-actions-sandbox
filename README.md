@@ -6,7 +6,7 @@ I use this repo to:
 - Learn how GitHub Actions workflows work 📚  
 - Test CI/CD pipelines ⚙️  
 - Experiment with triggers like push, pull_request, and schedule ⏰  
-- Try out integrations with tools like Docker 🐳, AWS ☁️, or Slack 💬  
+- Try out integrations with tools like Docker 🐳, AWS ☁️
 - Explore caching, matrix builds, and artifact management 🗃️ 
 - Build custom actions using Docker, JavaScript, and composite actions 🏗️
 
