@@ -13,7 +13,7 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
-            cd second-action-react-demo
+            cd fourth-action-react-demo
             npm ci
 
 
