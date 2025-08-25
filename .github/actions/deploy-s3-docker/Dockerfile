@@ -7,4 +7,4 @@ COPY . .
 RUN pip install -r requirements.txt
 
 
-CMD ["python", "/deployment.py"]
+CMD ["python", "/app/deployment.py"]
