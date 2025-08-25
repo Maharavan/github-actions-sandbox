@@ -80,7 +80,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
         with:
           buckets: gha-custom-action-js
-          dist-folder: $GITHUB_WORKSPACE/dist-files
+          dist-folder: dist-files
   report:
     if: failure()
     needs: [lint,deploy]
