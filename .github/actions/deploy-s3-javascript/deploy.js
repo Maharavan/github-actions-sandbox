@@ -7,7 +7,6 @@ function run(){
     const bucket_region = core.getInput('buckets-region',{required: true});
     const deploy = core.getInput('dist-folder',{required:true});
 
-    github.
 
     core.notice('Hello from deploy to AWS S3');
     const s3Uri = `s3://${bucket}`
