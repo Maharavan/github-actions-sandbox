@@ -2,24 +2,15 @@ name: Continue Website Deployment
 on:
   push:
     branches:
-      - '!main'
+      - 'main'
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: fourth-action-react-demo/node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit!='true'
-        run: |
-              cd fourth-action-react-demo
-              npm ci
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
       - name: Lint code
         run:  |
               cd fourth-action-react-demo
@@ -30,17 +21,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: fourth-action-react-demo/node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-              cd fourth-action-react-demo
-              npm ci
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
       - name: Test code
         id: test-stage
         continue-on-error: true # treats stage as success even it failed
@@ -58,17 +40,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v5
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: fourth-action-react-demo/node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit!='true'
-        run: |
-              cd fourth-action-react-demo
-              npm ci
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
       - name: Build website
         id: build-website
         run: |
