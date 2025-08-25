@@ -79,7 +79,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Run github action
-        uses: ./github/actions/deploy-s3-javascript
+        uses: ./.github/actions/deploy-s3-javascript
   report:
     if: failure()
     needs: [lint,deploy]
