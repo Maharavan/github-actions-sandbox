@@ -1,16 +1,22 @@
 name: 'Get & Cache dependencies'
 description: 'Get dependencies via(npm) and cache them'
+inputs:
+  cache-check:
+    description: 'User requires cache to be done or not'
+    required: false
+    default: 'true'
 runs:
   using: 'composite'
   steps:
     - name: 'Cache dependencies'
+      if: inputs.cache-check == 'true'
       id: cache
       uses: actions/cache@v4
       with:
         path: fourth-action-react-demo/node_modules
         key: dep-node-modules-${{hashFiles('**/package-lock.json')}}
     - name: 'Install dependencies'
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.cache-check != 'true'
       shell: bash
       run: |
             cd fourth-action-react-demo

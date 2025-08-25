@@ -24,6 +24,8 @@ jobs:
         uses: actions/checkout@v5
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
+        with:
+          cache-check: 'false'
       - name: Test code
         id: test-stage
         continue-on-error: true # treats stage as success even it failed
