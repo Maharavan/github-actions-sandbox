@@ -11,6 +11,10 @@ inputs:
   dist-folder:
     description: folder containing deployable folders
     required: true
+outputs:
+  website-url:
+    description: 'URL website'
+    
 
 runs:
   using: node24

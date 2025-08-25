@@ -11,7 +11,9 @@ function run(){
     core.notice('Hello from deploy to AWS S3');
     const s3Uri = `s3://${bucket}`
     exec.exec(`aws s3 sync ${deploy} ${s3Uri} --region ${bucket_region} `)
-
+    
+    const websiteUrl= `http://${bucket}.s3-website-${bucket_region}.amazonaws.com`
+    core.setOutput('website-url',websiteUrl)
 
 }
 
