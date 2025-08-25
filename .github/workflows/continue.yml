@@ -23,9 +23,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v5
       - name: Load & cache dependencies
+        id: check-cache-status
         uses: ./.github/actions/cached-deps
         with:
           cache-check: 'false'
+      - name: output cache data
+        run: echo "${{ steps.check-cache-status.outputs.used-cache }}"
       - name: Test code
         id: test-stage
         continue-on-error: true # treats stage as success even it failed

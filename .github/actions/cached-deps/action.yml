@@ -5,6 +5,10 @@ inputs:
     description: 'User requires cache to be done or not'
     required: false
     default: 'true'
+outputs:
+  used-cache:
+    description: 'Check cache used or not'
+    value: ${{ steps.install.outputs.cache}}
 runs:
   using: 'composite'
   steps:
@@ -16,10 +20,12 @@ runs:
         path: fourth-action-react-demo/node_modules
         key: dep-node-modules-${{hashFiles('**/package-lock.json')}}
     - name: 'Install dependencies'
+      id: install
       if: steps.cache.outputs.cache-hit != 'true' || inputs.cache-check != 'true'
       shell: bash
       run: |
             cd fourth-action-react-demo
             npm ci
+            echo "cache='${{inputs.cache-check}}'" >> $GITHUB_OUTPUT
 
 
